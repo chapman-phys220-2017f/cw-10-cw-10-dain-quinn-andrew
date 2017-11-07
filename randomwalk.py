@@ -37,6 +37,46 @@ def walk_gen(walkers=10, steps_per_frame=1):
             ys += np.where(moves == NORTH, 1, 0)
             ys -= np.where(moves == SOUTH, 1, 0)
         yield (xs,ys)
+        
+def walk_gen1(walkers=10, steps_per_frame=1):
+    """Generator for 2D random walkers
+    Yields x and y coordinate arrays for particles that randomly walk around
+    a 2D lattice indexed by integers. Each walker may move in one of four
+    cardinal directions randomly, on each time step. The generator yields all
+    new positions with each iteration.
+    
+    Args:
+      walkers : int, number of walkers
+      steps_per_frame : number of internal steps to take before each yield
+    
+    Returns:
+      (xs, ys) : tuple of arrays of x and y coordinate integers for all walkers
+    """
+    forbidL = []
+    forbidT = []
+    forbidB = []
+    forbidR = []
+    for in in range(-19,20):
+        forbidL.append((19,i))
+    for i in range(-19,20):
+        forbidT.append((i,19))
+        forbidB.append((i,-19))
+    for i in range(5,19):
+        forbidR.append((19,i))
+        forbidR.append((19,-i))
+    xs = np.zeros(walkers)
+    ys = np.zeros(walkers)
+    EAST, WEST, NORTH, SOUTH = 0, 1, 2, 3 
+    while True:
+        for step in range(steps_per_frame):
+            if (xs,ys) 
+            else:
+                moves = np.random.randint(4, size=walkers)
+                xs += np.where(moves == EAST, 1, 0)
+                xs -= np.where(moves == WEST, 1, 0)
+                ys += np.where(moves == NORTH, 1, 0)
+                ys -= np.where(moves == SOUTH, 1, 0)
+        yield (xs,ys)
 
 def plot_anim(frame_gen, xlim=(-30,30), ylim=(-30,30), delay=20, max_frames=100,
                    title=None, xlabel=None, ylabel=None, gif=False):
