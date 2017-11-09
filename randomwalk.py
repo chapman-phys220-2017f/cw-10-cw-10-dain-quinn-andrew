@@ -57,37 +57,52 @@ def walk_gen1(walkers=10, steps_per_frame=1):
     forbidB = []
     forbidR = []
     for i in range(-19,20):
-        forbidL.append([-19,i])
-        forbidT.append([i,19])
-        forbidB.append([i,-19])
+        forbidL.append((-19,i))
+        forbidT.append((i,19))
+        forbidB.append((i,-19))
     for i in range(5,19):
-        forbidR.append([19,i])
-        forbidR.append([19,-i])
-        forbidL.append([21,i])
-        forbidL.append([21,-i])
+        forbidR.append((19,i))
+        forbidR.append((19,-i))
+        forbidL.append((21,i))
+        forbidL.append((21,-i))
     for i in range(-21,22):
-        forbidR.append([-21,i])
-        forbidT.append([-i,-21])
-        forbidB.append([i,21])
-    xs = np.zeros(walkers)
-    ys = np.zeros(walkers)
+        forbidR.append((-21,i))
+        forbidT.append((-i,-21))
+        forbidB.append((i,21))
+    #xs = np.zeros(walkers)
+    #ys = np.zeros(walkers)
+    xs = []
+    ys = []
+    for j in range(walkers):
+        xs.append(0)
+        ys.append(0)
     EAST, WEST, NORTH, SOUTH = 0, 1, 2, 3 
     while True:
         for step in range(steps_per_frame):
-            if [xs,ys] in forbidT:
-                ys -= np.where(moves == SOUTH, 1, 0)
-            elif [xs,ys] in forbidB:
-                ys += np.where(moves == NORTH, 1, 0)
-            elif [xs,ys] in forbidL:
-                xs += np.where(moves == EAST, 1, 0)
-            elif [xs,ys] in forbidR:
-                xs -= np.where(moves == WEST, 1, 0)
-            else:
-                moves = np.random.randint(4, size=walkers)
-                xs += np.where(moves == EAST, 1, 0)
-                xs -= np.where(moves == WEST, 1, 0)
-                ys += np.where(moves == NORTH, 1, 0)
-                ys -= np.where(moves == SOUTH, 1, 0)
+            for i in range(walkers):
+                if (xs[i],ys[i]) in forbidT:
+                    ys[i] = ys[i]-1 #np.where(True, 1, 0)
+                elif (xs[i],ys[i]) in forbidB:
+                    ys[i] = ys[i]+1 #np.where(True, 1, 0)
+                elif (xs[i],ys[i]) in forbidL:
+                    xs[i] = xs[i]+1 #np.where(True, 1, 0)
+                elif (xs[i],ys[i]) in forbidR:
+                    xs[i] = xs[i]-1 #np.where(True, 1, 0)
+                else:
+                #moves = np.random.randint(4, size=walkers)
+                #xs += np.where(moves == EAST, 1, 0)
+                #xs -= np.where(moves == WEST, 1, 0)
+                #ys += np.where(moves == NORTH, 1, 0)
+                #ys -= np.where(moves == SOUTH, 1, 0)
+                    which = np.random.randint(4)
+                    if which == 0:
+                        xs[i] = xs[i]+1
+                    elif which == 1:
+                        xs[i] = xs[i]-1
+                    elif which == 2:
+                        ys[i] = ys[i]+1
+                    else:
+                        ys[i] = ys[i]-1
         yield (xs,ys)
 
 def plot_anim(frame_gen, xlim=(-30,30), ylim=(-30,30), delay=20, max_frames=100,
