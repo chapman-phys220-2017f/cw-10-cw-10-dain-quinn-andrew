@@ -132,6 +132,7 @@ def plot_anim(frame_gen, xlim=(-30,30), ylim=(-30,30), delay=20, max_frames=100,
     Effects:
       Saves a gif file containing the animation (when gif true)
     """
+    
     # Create empty plot set to desired fixed zoom
     fig, ax = plt.subplots()
     ax.set_xlim(xlim)
@@ -139,6 +140,11 @@ def plot_anim(frame_gen, xlim=(-30,30), ylim=(-30,30), delay=20, max_frames=100,
     if title:  plt.title(title)
     if xlabel: plt.xlabel(xlabel)
     if ylabel: plt.ylabel(ylabel)
+    ax.plot([-20,-20],[-20,20],'r-')
+    ax.plot([-20,20],[20,20],'r-')
+    ax.plot([20,20],[20,5],'r-')
+    ax.plot([20,20],[-20,-5],'r-')
+    ax.plot([20,-20],[-20,-20],'r-')
     
     # Draw an empty line and save the handle to update later
     line, = ax.plot([], [], 'r.', alpha=0.4)
