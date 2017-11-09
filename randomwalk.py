@@ -56,20 +56,32 @@ def walk_gen1(walkers=10, steps_per_frame=1):
     forbidT = []
     forbidB = []
     forbidR = []
-    for in in range(-19,20):
-        forbidL.append((19,i))
     for i in range(-19,20):
-        forbidT.append((i,19))
-        forbidB.append((i,-19))
+        forbidL.append([-19,i])
+        forbidT.append([i,19])
+        forbidB.append([i,-19])
     for i in range(5,19):
-        forbidR.append((19,i))
-        forbidR.append((19,-i))
+        forbidR.append([19,i])
+        forbidR.append([19,-i])
+        forbidL.append([21,i])
+        forbidL.append([21,-i])
+    for i in range(-21,22):
+        forbidR.append([-21,i])
+        forbidT.append([-i,-21])
+        forbidB.append([i,21])
     xs = np.zeros(walkers)
     ys = np.zeros(walkers)
     EAST, WEST, NORTH, SOUTH = 0, 1, 2, 3 
     while True:
         for step in range(steps_per_frame):
-            if (xs,ys) 
+            if [xs,ys] in forbidT:
+                ys -= np.where(moves == SOUTH, 1, 0)
+            elif [xs,ys] in forbidB:
+                ys += np.where(moves == NORTH, 1, 0)
+            elif [xs,ys] in forbidL:
+                xs += np.where(moves == EAST, 1, 0)
+            elif [xs,ys] in forbidR:
+                xs -= np.where(moves == WEST, 1, 0)
             else:
                 moves = np.random.randint(4, size=walkers)
                 xs += np.where(moves == EAST, 1, 0)
