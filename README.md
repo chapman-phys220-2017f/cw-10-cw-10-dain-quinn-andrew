@@ -1,6 +1,6 @@
 # PHYS220 CW 10 
 
-**Author(s):** **CHANGEME**
+**Author(s):** **Quinn Dain Andrew**
 
 [![Build Status](https://travis-ci.org/chapman-phys220-2017f/cw-10-YOURNAME.svg?branch=master)](https://travis-ci.org/chapman-phys220-2017f/cw-10-YOURNAME)
 
@@ -16,7 +16,7 @@ Pro-tip: using git to manage conflicts on Jupyter notebooks is a pain. I recomme
 
 Analyze in this section what you found useful about this assignment in your own words. Include any lingering questions or comments that you may have.
 
-**CHANGEME**
+It was very interesting to see how the video models could help show what is going on in the xs and ys arrays over time instead of in a snapshot
 
 ## Honor Pledge
 
@@ -27,4 +27,4 @@ I pledge that all the work in this repository is my own with only the following 
 
 Signed,
 
-**YOURNAME**
+**Quinn Gates**
