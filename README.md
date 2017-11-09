@@ -2,7 +2,7 @@
 
 **Author(s):** **Quinn Dain Andrew**
 
-[![Build Status](https://travis-ci.org/chapman-phys220-2017f/cw-10-YOURNAME.svg?branch=master)](https://travis-ci.org/chapman-phys220-2017f/cw-10-YOURNAME)
+[![Build Status](https://travis-ci.org/chapman-phys220-2017f/cw-06-quinn-and-dain-and-andrew-cw-06.svg?branch=master)
 
 ## Specification
 
